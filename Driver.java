@@ -14,8 +14,10 @@ public class Driver
 	List<Callable<Object>> tasks = new ArrayList<Callable<Object>>(1024);
         
 	String host = args[0];
+	int lowP = Integer.parseInt(args[1]);
+	int highP = Integer.parseInt(args[2]);
         
-	for(int port = 1; port < 1025; ++port)
+	for(int port = lowP; port < highP + 1; ++port)
 	{
 	    Runnable r = new ProbeTask(host, port);
 	    tasks.add(Executors.callable(r));
